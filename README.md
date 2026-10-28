@@ -62,3 +62,16 @@ Mở máy chủ HTTP ở thư mục dự án và chạy `node qa/check.cjs`. Cà
 Sau đó chạy `python qa/check-pdf.py` với môi trường có pypdf để bắt lỗi số trang và khổ giấy. Dựng PDF ra ảnh bằng Poppler để kiểm tra trực quan trước khi xuất bản. Các hàng dùng kích thước cố định và giới hạn hàng lưới để tránh đẩy ô sang trang thứ hai.
 
 Ảnh và logo thuộc đơn vị/cá nhân cung cấp; repo không cấp quyền tái sử dụng ảnh. Mã và minh họa có thể chỉnh sửa phục vụ bảng tin của trường.
+
+## Thông tin hoạt động được bổ sung theo xác nhận của người dùng
+
+- Môn Công nghệ gắn với công nghệ công nghiệp, bản vẽ cơ khí và vẽ mạch điện tử.
+- Sân chơi AI còn là dịp gặp lại các anh chị cựu học sinh, kết nối các thế hệ Phú Nhuận.
+- Robot dò đường phối hợp cùng Đại học Công nghệ thông tin – ĐHQG TP. HCM; học sinh học cùng sinh viên, làm sản phẩm và thi đua cùng nhau.
+- Đọc tin có kiểm chứng: Khoa Báo chí và Truyền thông, Trường Đại học Khoa học Xã hội và Nhân văn TP. HCM thực hiện.
+- Thiết kế đồ họa: Khoa Mỹ thuật Công nghiệp, Trường Đại học Kiến trúc TP. HCM thực hiện; học sinh học thiết kế vector.
+- Chạm vào công nghệ: phối hợp các trường đại học đối tác như VGU, UIT.
+
+Phần thuyết minh được căn đều hai bên; dòng cuối căn trái. `typography.js` giữ các cụm từ và phần kết đoạn đi cùng nhau, tránh một chữ lẻ ở dòng cuối; không dùng ngắt giữa chữ hoặc dấu gạch nối tự động. Phông Noto Sans dùng cục bộ. PDF kiểm tra các phông được nhúng hoặc có chương trình vẽ ký tự tích hợp cùng ánh xạ Unicode, giúp giữ hình dạng chữ khi in trên máy khác.
+
+Sau khi sửa nội dung, chạy thêm `node qa/typography.cjs` để rà các dòng cuối chỉ còn một từ, kiểm tra phông đã tải và ký tự thay thế. Cần chạy kiểm tra bố cục, xuất PDF và xem ảnh dựng từ PDF sau mọi thay đổi typography.
