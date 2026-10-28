@@ -1,7 +1,9 @@
 const poster = document.querySelector('.sheet');
 const wrapper = document.querySelector('.sheet-wrap');
 function fitPreview() {
-  const width = document.querySelector('.viewport').clientWidth - (innerWidth < 900 ? 20 : 36);
+  const viewport = document.querySelector('.viewport');
+  const padding = getComputedStyle(viewport);
+  const width = viewport.clientWidth - parseFloat(padding.paddingLeft) - parseFloat(padding.paddingRight);
   const scale = Math.min(1, width / poster.offsetWidth);
   poster.style.transform = `scale(${scale})`;
   wrapper.style.width = `${poster.offsetWidth * scale}px`;

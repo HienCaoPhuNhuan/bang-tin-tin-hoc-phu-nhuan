@@ -1,42 +1,47 @@
-# Bảng tin Tin học · THPT Phú Nhuận
+# Bảng tin học tập · Tổ Tin - Công nghệ · THPT Phú Nhuận
 
-Bản web tĩnh để in **một trang dọc 60 × 90 cm (600 × 900 mm)**, gồm **14 ô cắt rời**, chào mừng 50 năm thành lập Trường THPT Phú Nhuận (1976–2026).
+Bản web tĩnh và PDF một trang **rộng 60 × cao 90 cm**, gồm **16 ô cắt rời**, chào mừng 50 năm thành lập Trường THPT Phú Nhuận (1976–2026).
 
-## In và dán bảng tin
+## Không gian sử dụng
 
-Ưu tiên tải `output/pdf/bang-tin-tin-hoc-60x90cm.pdf` và in **Actual size / 100%**, khổ giấy tùy chỉnh **600 × 900 mm, hướng dọc**. PDF có sẵn nền màu và đường cắt.
+Người dùng xác nhận 60 × 90 cm là **riêng vùng nền xanh để dán nội dung**, bên dưới phần tên bảng có sẵn. Dải đầu trang là chủ đề kỷ niệm, không lặp lại một khối tên bảng lớn. Có lề an toàn 10 mm quanh giấy và khoảng cắt 4 mm giữa các ô.
 
-Nếu in từ web: nhấn **In khổ 60 × 90 cm**, chọn khổ giấy tùy chỉnh 600 × 900 mm, lề Không, bật Đồ họa nền, tắt đầu/chân trang. Có khoảng an toàn 12 mm quanh giấy. Hộp “Đường cắt” chỉ thay đổi bản in trực tiếp từ web; PDF tải xuống luôn có đường cắt.
+Ưu tiên in `output/pdf/bang-tin-tin-hoc-60x90cm.pdf` ở **Actual size / 100%**, khổ giấy tùy chỉnh **600 × 900 mm, hướng dọc**. Nếu in từ web, chọn lề Không, bật Đồ họa nền, tắt đầu/chân trang. PDF tải xuống luôn có đường cắt; hộp “Đường cắt” chỉ điều khiển bản in trực tiếp từ web. Có thể đổi vị trí các ô khi dán.
 
-Cắt theo viền nét đứt từng ô. Tiêu đề đặt phía trên; các ô khác có thể sắp xếp lại tùy kích thước bảng tin cứng. Không có chữ, ảnh hoặc nền chạy xuyên qua hai ô.
+## Nội dung và ảnh
 
-## Nội dung
+| Ô | Nội dung |
+| --- | --- |
+| 01 | Chủ đề “50 năm · Tiếp nối sáng tạo”; logo trường cạnh logo kỷ niệm 50 năm |
+| 02 | Tập thể Tổ Tin - Công nghệ mới; ảnh Tổ Tin học và logo Tin học được giữ như hình ảnh lưu niệm |
+| 03–05 | An toàn mạng, lập trình với ví dụ Python, dữ liệu với biểu đồ minh họa |
+| 06–07 | Hoạt động AI Challenge và trao giải; AI có trách nhiệm trong học tập |
+| 08–10 | Robot dò đường, nghiên cứu khoa học kỹ thuật và trại lập trình |
+| 11–13 | Kiểm chứng thông tin, thiết kế đồ họa, tập huấn Google Education và chuyên đề AI |
+| 14–16 | Hướng nghiệp, sáu miền năng lực số, công nghệ trong giáo dục và lời tri ân nhân dịp 50 năm |
 
-- Ô 01: tiêu đề và logo Tổ Tin học bên trái; logo trường nằm ngay cạnh logo kỷ niệm 50 năm ở góc phải.
-- Ô 02–11: ảnh kết hợp nội dung kiến thức và thực hành: nguyên lý robot dò đường, quy trình nghiên cứu, sử dụng AI, kiểm chứng tin, thiết kế đồ họa, cộng tác số, hướng nghiệp và kiểm thử chương trình. Dùng đủ 11 ảnh hoạt động do người dùng cung cấp; chú thích theo tên tệp. Hai ảnh chưa có tên hoạt động được người dùng xác nhận là trải nghiệm các công nghệ kỹ thuật của trường đại học và trại lập trình bồi dưỡng học sinh.
-- Ô 12: tên sáu miền năng lực số và ví dụ thực hành tương ứng. Tên miền theo Thông tư 02/2025/TT-BGDĐT, tham khảo [Báo Điện tử Chính phủ](https://baochinhphu.vn/ban-hanh-quy-dinh-khung-nang-luc-so-cho-nguoi-hoc-102250207122046742.htm) và [văn bản trên Cổng Thông tin điện tử Chính phủ](https://vanban.chinhphu.vn/?classid=1&docid=212648&orggroupid=4&pageid=27160).
-- Ô 13–14: gợi ý thực hành AI có trách nhiệm, mẫu yêu cầu AI để tự học, thử thách tạo sản phẩm số và bảo vệ tài khoản. Đây là nội dung biên soạn cho bảng tin, không phải thông báo về một cuộc thi do trường tổ chức.
+Dùng đủ **12 ảnh**, gồm ảnh mới `To Tin hoc Cong nghe.jpg` và 11 ảnh trước đó. Chú thích theo tên tệp và thông tin người dùng xác nhận. Hai ảnh tên máy ảnh tương ứng trải nghiệm công nghệ kỹ thuật của trường đại học và trại lập trình bồi dưỡng học sinh. Không tự thêm tên người, giải thưởng hoặc mốc lịch sử chưa được cung cấp.
 
-Không tự bổ sung tên người, thứ hạng giải thưởng hoặc số liệu thành tích chưa được cung cấp. Ảnh giữ trọn khung bằng `object-fit: contain`, không cắt người. Bản nguồn độ phân giải đầy đủ vẫn ở thư mục cha; bản dùng trên web được tối ưu tối đa 3200 px, không sửa nội dung ảnh. Logo tổ có độ phân giải gốc 189 × 47 px nên chỉ đặt ở kích thước nhỏ.
+Ảnh giữ nguyên nội dung, không cắt người; bản web được tối ưu tối đa 3200 px, ảnh nguồn đầy đủ vẫn ở thư mục cha. Sáu hình minh họa SVG tự vẽ về bảo mật, lập trình, dữ liệu, AI, robot và giáo dục có thể in sắc nét. Biểu đồ 10 bạn là **số liệu minh họa**, không phải thống kê của trường. Không có lời kêu gọi thiết kế poster hay thông báo cuộc thi mới.
 
-Nội dung về hai định hướng Tin học ứng dụng và Khoa học máy tính tham chiếu [Chương trình giáo dục phổ thông, Bộ GDĐT](https://moet.gov.vn/content/vanban/Lists/VBPQ/Attachments/1483/vbhn-chuong-trinh-tong-the.pdf). Các phần giải thích và gợi ý học tập do bảng tin biên soạn, không phải tường thuật thêm về sự kiện trong ảnh.
+## Tham khảo nội dung
 
-**Lưu ý kích thước:** 60 × 90 cm là khổ tùy chỉnh, không phải A1 tiêu chuẩn. Ghi rõ kích thước rộng × cao khi gửi tiệm in.
+- [CISA: Secure Our World](https://www.cisa.gov/secure-our-world): thói quen bảo vệ tài khoản và nhận diện giả mạo.
+- [Báo Điện tử Chính phủ: Khung năng lực số cho người học, Thông tư 02/2025/TT-BGDĐT](https://baochinhphu.vn/bo-giao-duc-va-dao-tao-ban-hanh-khung-nang-luc-so-cho-nguoi-hoc-102250206093701931.htm).
+- [Báo Điện tử Chính phủ: Khung năng lực số cho giáo viên, cán bộ quản lí, Thông tư 18/2026/TT-BGDĐT](https://xaydungchinhsach.chinhphu.vn/thong-tu-so-18-2026-tt-bgddt-quy-dinh-khung-nang-luc-so-doi-voi-giao-vien-can-bo-quan-li-11926040316034855.htm).
+- [Bộ GDĐT: Chương trình giáo dục phổ thông](https://moet.gov.vn/content/vanban/Lists/VBPQ/Attachments/1483/vbhn-chuong-trinh-tong-the.pdf): hai định hướng của môn Tin học.
 
-## Chỉnh sửa
+Các phần giải thích, ví dụ và gợi ý thực hành do bảng tin biên soạn, không phải tường thuật thêm về sự kiện trong ảnh. Nguồn rút gọn được in ở chân trang; liên kết đầy đủ nằm dưới bản xem trước trên web.
 
-- Sửa tiêu đề, chú thích và nội dung trong `index.html`.
-- Sửa màu sắc, cỡ chữ, chiều cao các ô trong `styles.css`. Tổng chiều cao nội dung là 876 mm, cộng hai lề 12 mm thành 900 mm; các hàng cách nhau 5 mm.
-- Thay ảnh và logo trong `assets/`, giữ tên tệp để không phải sửa HTML.
-- Phông Noto Sans được lưu cục bộ, hỗ trợ tiếng Việt; giấy phép ở `assets/OFL.txt`.
-- `app.js` xử lý thu phóng bản xem trước, hướng dẫn in và nút in; không thu thập dữ liệu.
-- GitHub Actions tự xuất bản khi đẩy thay đổi lên `main`. **PDF là bản xuất sẵn:** khi sửa nội dung phải xuất lại PDF rồi commit cùng thay đổi web.
+## Chỉnh sửa và xuất bản
 
-## Kiểm tra và xuất PDF
+- Sửa nội dung trong `index.html`, bố cục và màu sắc trong `styles.css`, thao tác in trong `app.js`.
+- Tổng chiều cao các hàng là 856 mm, cộng 6 khoảng 4 mm thành 880 mm; thêm hai lề 10 mm thành 900 mm.
+- Ảnh và SVG nằm trong `assets/`. Phông Noto Sans được lưu cục bộ, hỗ trợ tiếng Việt; giấy phép ở `assets/OFL.txt`.
+- GitHub Actions tự xuất bản khi đẩy thay đổi lên `main`. PDF là bản xuất sẵn: sửa nội dung web phải xuất lại PDF rồi commit cùng thay đổi.
 
-Mở máy chủ HTTP tại thư mục này. Script `qa/check.cjs` dùng Playwright và Edge để kiểm tra ảnh, phông, kích thước, tràn khung, giao diện điện thoại và các nút; đồng thời xuất PDF. Cài gói Playwright trong môi trường chạy hoặc đặt biến PLAYWRIGHT_MODULE trỏ tới gói có sẵn.
+Mở máy chủ HTTP ở thư mục dự án và chạy `node qa/check.cjs`. Cài Playwright hoặc đặt `PLAYWRIGHT_MODULE` trỏ tới gói có sẵn; máy chạy cần có Microsoft Edge. Script kiểm tra ảnh/phông, 16 ô, logo cạnh nhau, ảnh tập thể mới, 6 minh họa, nội dung tràn/chồng nhau, nút hướng dẫn và giao diện điện thoại; đồng thời xuất PDF.
 
-PDF đã được kiểm tra số trang, kích thước và xem ảnh dựng từ PDF. Không thêm hiệu ứng chuyển động để giữ bản in ổn định.
+Sau đó chạy `python qa/check-pdf.py` với môi trường có pypdf để bắt lỗi số trang và khổ giấy. Dựng PDF ra ảnh bằng Poppler để kiểm tra trực quan trước khi xuất bản. Các hàng dùng kích thước cố định và giới hạn hàng lưới để tránh đẩy ô sang trang thứ hai.
 
-Ảnh và logo thuộc đơn vị/cá nhân cung cấp; việc công bố ở repo này không cấp quyền tái sử dụng ảnh. Mã HTML/CSS/JS có thể chỉnh sửa phục vụ bảng tin của trường.
-
+Ảnh và logo thuộc đơn vị/cá nhân cung cấp; repo không cấp quyền tái sử dụng ảnh. Mã và minh họa có thể chỉnh sửa phục vụ bảng tin của trường.

@@ -11,7 +11,7 @@ const path=require('path');
   const px=96/25.4, sheet=document.querySelector('.sheet');
   const overflow=[...document.querySelectorAll('.tile')].flatMap(tile=>{
     const r=tile.getBoundingClientRect();
-    return [...tile.querySelectorAll('h1,h2,p,figure,blockquote,ol,.tags,.note,.brief')].filter(el=>{
+    return [...tile.querySelectorAll('h1,h2,h3,p,figure,ol,ul,pre,.case,.ribbon,.topic-head,.pipeline,.domains,.mini-banner,.anniversary-note')].filter(el=>{
       const b=el.getBoundingClientRect();return b.bottom>r.bottom+1||b.right>r.right+1||b.left<r.left-1;
     }).map(el=>({tile:tile.dataset.tile,tag:el.tagName,text:el.textContent.slice(0,80)}));
   });
@@ -27,15 +27,16 @@ const path=require('path');
    const overflow=[],overlap=[];
    for(const tile of document.querySelectorAll('.tile')){
      const r=tile.getBoundingClientRect();
-     for(const el of tile.querySelectorAll('h1,h2,p,figure,blockquote,ol,.tags,.note,.brief,.insight,.feature-columns,.prompt-example,.security-tip')){
+     for(const el of tile.querySelectorAll('h1,h2,h3,p,figure,ol,ul,pre,.case,.ribbon,.topic-head,.pipeline,.domains,.mini-banner,.anniversary-note')){
        const b=el.getBoundingClientRect();
        if(b.bottom>r.bottom+1||b.right>r.right+1||b.left<r.left-1)overflow.push({tile:tile.dataset.tile,text:el.textContent.slice(0,70)});
      }
      const body=tile.querySelector('.tile-body');
-     if(body){const children=[...body.children];for(let i=1;i<children.length;i++)if(children[i-1].getBoundingClientRect().bottom>children[i].getBoundingClientRect().top+1)overlap.push(tile.dataset.tile);}
+     if(body){const children=[...body.children];for(let i=0;i<children.length;i++)for(let j=i+1;j<children.length;j++){const a=children[i].getBoundingClientRect(),b=children[j].getBoundingClientRect();if(a.bottom>b.top+1&&b.bottom>a.top+1&&a.right>b.left+1&&b.right>a.left+1)overlap.push(tile.dataset.tile);}}
    }
    const school=document.querySelector('.anniversary .school-logo').getBoundingClientRect(), anniversary=document.querySelector('.anniversary img:last-child').getBoundingClientRect();
-   return {overflow,overlap,logosAdjacent:school.right<=anniversary.left&&Math.abs(school.top-anniversary.top)<2,wordCount:document.querySelector('.sheet').innerText.trim().split(/\s+/).length};
+   const text=document.querySelector('.sheet').innerText;
+   return {overflow,overlap,logosAdjacent:school.right<=anniversary.left&&Math.abs(school.top-anniversary.top)<2,wordCount:text.trim().split(/\s+/).length,newTeam:document.querySelector('img[src="assets/to-tin-cong-nghe.jpg"]').complete,illustrations:document.querySelectorAll('img[src$=".svg"]').length,noPosterAssignment:!text.includes('Thiết kế một poster')};
  });
  fs.mkdirSync(path.join(__dirname,'../output/pdf'),{recursive:true});
  await page.pdf({path:path.join(__dirname,'../output/pdf/bang-tin-tin-hoc-60x90cm.pdf'),preferCSSPageSize:true,printBackground:true});
@@ -46,7 +47,7 @@ const path=require('path');
  report.errors=errors;fs.writeFileSync(path.join(__dirname,'check-report.json'),JSON.stringify(report,null,2));
  console.log(JSON.stringify(report,null,2));
  await browser.close();
- if(report.overflow.length||report.print.overflow.length||report.print.overlap.length||!report.print.logosAdjacent||report.images.some(i=>!i.loaded)||errors.length||report.tiles!==14||report.mobile.scrollWidth>390||Math.abs(report.sizeMm[0]-600)>.2||Math.abs(report.sizeMm[1]-900)>.2)process.exitCode=1;
+ if(report.overflow.length||report.print.overflow.length||report.print.overlap.length||!report.print.logosAdjacent||!report.print.newTeam||!report.print.noPosterAssignment||report.print.illustrations!==6||report.images.some(i=>!i.loaded)||errors.length||report.tiles!==16||report.mobile.scrollWidth>390||Math.abs(report.sizeMm[0]-600)>.2||Math.abs(report.sizeMm[1]-900)>.2)process.exitCode=1;
 })();
 
 

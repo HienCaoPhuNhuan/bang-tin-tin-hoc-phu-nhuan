@@ -1,4 +1,5 @@
 qa/contact.jpg
+qa/*.jpg
 qa/preview*.png
 qa/pdf-page*.png
 qa/*report.json
