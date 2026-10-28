@@ -7,6 +7,7 @@ const path=require('path');
  const errors=[];page.on('pageerror',e=>errors.push(String(e)));
  await page.goto(process.argv[2]||'http://127.0.0.1:8765',{waitUntil:'networkidle'});
  await page.evaluate(()=>document.fonts.ready);
+ await page.evaluate(()=>Promise.all([...document.images].map(image=>image.decode().catch(()=>{}))));
  const report=await page.evaluate(()=>{
   const px=96/25.4, sheet=document.querySelector('.sheet');
   const overflow=[...document.querySelectorAll('.tile')].flatMap(tile=>{
@@ -36,7 +37,13 @@ const path=require('path');
    }
    const school=document.querySelector('.anniversary .school-logo').getBoundingClientRect(), anniversary=document.querySelector('.anniversary img:last-child').getBoundingClientRect();
    const text=document.querySelector('.sheet').innerText;
-   return {overflow,overlap,logosAdjacent:school.right<=anniversary.left&&Math.abs(school.top-anniversary.top)<2,wordCount:text.trim().split(/\s+/).length,newTeam:document.querySelector('img[src="assets/to-tin-cong-nghe.jpg"]').complete,illustrations:document.querySelectorAll('img[src$=".svg"]').length,noPosterAssignment:!text.includes('Thiết kế một poster')};
+   const photos=[...document.querySelectorAll('.sheet img')].filter(i=>i.src.endsWith('.jpg')).map(i=>{
+     const scale=Math.min(i.clientWidth/i.naturalWidth,i.clientHeight/i.naturalHeight);
+     const widthMm=i.naturalWidth*scale*25.4/96;
+     return {file:i.src.split('/').pop(),widthMm,heightMm:i.naturalHeight*scale*25.4/96,dpi:i.naturalWidth/(widthMm/25.4)};
+   });
+   const enrichment=document.querySelector('[data-tile="10"]').innerText;
+   return {overflow,overlap,photos,logosAdjacent:school.right<=anniversary.left&&Math.abs(school.top-anniversary.top)<2,wordCount:text.trim().split(/\s+/).length,newTeam:document.querySelector('img[src="assets/to-tin-cong-nghe.jpg"]').complete,illustrations:document.querySelectorAll('img[src$=".svg"]').length,noPosterAssignment:!text.includes('Thiết kế một poster'),enrichmentUpdated:enrichment.includes('Chương trình bồi dưỡng')&&enrichment.includes('môi trường đại học')&&enrichment.includes('các trường chuyên khác')&&!text.includes('Trại lập trình')};
  });
  fs.mkdirSync(path.join(__dirname,'../output/pdf'),{recursive:true});
  await page.pdf({path:path.join(__dirname,'../output/pdf/bang-tin-tin-hoc-60x90cm.pdf'),preferCSSPageSize:true,printBackground:true});
@@ -47,7 +54,7 @@ const path=require('path');
  report.errors=errors;fs.writeFileSync(path.join(__dirname,'check-report.json'),JSON.stringify(report,null,2));
  console.log(JSON.stringify(report,null,2));
  await browser.close();
- if(report.overflow.length||report.print.overflow.length||report.print.overlap.length||!report.print.logosAdjacent||!report.print.newTeam||!report.print.noPosterAssignment||report.print.illustrations!==6||report.images.some(i=>!i.loaded)||errors.length||report.tiles!==16||report.mobile.scrollWidth>390||Math.abs(report.sizeMm[0]-600)>.2||Math.abs(report.sizeMm[1]-900)>.2)process.exitCode=1;
+ if(report.overflow.length||report.print.overflow.length||report.print.overlap.length||!report.print.logosAdjacent||!report.print.newTeam||!report.print.noPosterAssignment||!report.print.enrichmentUpdated||report.print.photos.some(i=>i.widthMm<88||i.dpi<300)||report.print.illustrations!==6||report.images.some(i=>!i.loaded)||errors.length||report.tiles!==16||report.mobile.scrollWidth>390||Math.abs(report.sizeMm[0]-600)>.2||Math.abs(report.sizeMm[1]-900)>.2)process.exitCode=1;
 })();
 
 
