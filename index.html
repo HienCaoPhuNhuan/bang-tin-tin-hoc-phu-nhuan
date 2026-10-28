@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Bảng tin Tổ Tin học Trường THPT Phú Nhuận. Một trang A1, 14 ô nội dung có thể cắt rời để dán bảng tin.">
+  <title>Bảng tin Tin học · THPT Phú Nhuận</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="toolbar" aria-label="Công cụ bản in">
+  <div><strong>BẢNG TIN TIN HỌC</strong><span>A1 dọc · 594 × 841 mm · 14 ô cắt rời</span></div>
+  <div class="actions"><label><input type="checkbox" id="cut-lines" checked> Đường cắt</label><button id="print">In trang A1</button><a href="output/pdf/bang-tin-tin-hoc-A1.pdf" download>Tải PDF A1</a><button class="secondary" id="guide" aria-expanded="false" aria-controls="print-help">Cách in & dán</button></div>
+</nav>
+<aside id="print-help" hidden>
+  <strong>In đúng kích thước, cắt theo nét đứt và tự sắp xếp.</strong>
+  <p>Chọn giấy A1, hướng dọc, tỉ lệ 100% (Actual size), lề Không, bật Đồ họa nền và tắt đầu/chân trang. Bản PDF đã có đúng một trang A1; nên gửi PDF cho tiệm in để giữ kích thước. Có lề an toàn 12 mm quanh tờ.</p>
+  <p>Cắt theo viền nét đứt của 14 ô. Mã số nhỏ giúp đối chiếu bố cục; có thể đặt tiêu đề ở trên và tự do sắp xếp các ô còn lại. Ảnh gốc được giữ nguyên trong thư mục nguồn.</p>
+</aside>
+<main class="viewport" aria-label="Bản xem trước trang in A1">
+<div class="sheet-wrap"><div class="sheet" id="poster">
+  <header class="tile masthead" data-tile="01">
+    <div class="school-brand"><img src="assets/logo-truong.png" alt="Logo Trường THPT Phú Nhuận"><div>TRƯỜNG THPT PHÚ NHUẬN<br><strong>TỔ TIN HỌC</strong></div></div>
+    <div class="anniversary"><img src="assets/logo-50-nam.png" alt="50 năm Trường THPT Phú Nhuận, 1976–2026"><img class="dept-logo" src="assets/logo-to.png" alt="Logo Tổ Tin học Phú Nhuận"></div>
+    <div class="headline"><p class="eyebrow">CHÀO MỪNG 50 NĂM THÀNH LẬP TRƯỜNG · 1976–2026</p><h1>TIN HỌC <span>& CUỘC SỐNG</span></h1><p class="slogan">Vững tư duy · Giỏi công nghệ · Sáng tạo tương lai</p></div>
+    <div class="edition">BẢNG TIN TỔ TIN HỌC <span>HỌC TẬP · TRẢI NGHIỆM · SÁNG TẠO</span></div>
+  </header>
+
+  <section class="row hero-row">
+    <article class="tile feature" data-tile="02"><div class="tile-body">
+      <p class="eyebrow">DẤU ẤN HỌC SINH · TRÍ TUỆ NHÂN TẠO</p><h2>Từ ý tưởng đến sân chơi AI</h2>
+      <div class="photo-pair"><figure><img src="assets/ai-challenge.jpg" alt="Học sinh và giáo viên tại AI Challenge"><figcaption>AI Challenge</figcaption></figure><figure><img src="assets/trao-giai-ai.jpg" alt="Hoạt động trao giải AI tại Trường Đại học Gia Định"><figcaption>Hoạt động trao giải AI</figcaption></figure></div>
+      <p>Mỗi ý tưởng là một cơ hội vận dụng kiến thức, làm việc nhóm và giải quyết vấn đề. Học sinh học cách thử nghiệm, kiểm chứng và hoàn thiện sản phẩm AI.</p>
+      <div class="tags"><span>Dám đặt câu hỏi</span><span>Dám thử nghiệm</span><span>Biết kiểm chứng</span></div>
+    </div></article>
+    <article class="tile photo-card team" data-tile="03"><div class="tile-body"><p class="eyebrow">NGƯỜI THẦY ĐỒNG HÀNH</p><h2>Tổ Tin học</h2><figure><img src="assets/to-tin-hoc.jpg" alt="Tập thể Tổ Tin học Trường THPT Phú Nhuận"></figure><p>Đồng hành cùng học sinh trong học tập, trải nghiệm và sáng tạo với công nghệ.</p><blockquote>Khơi gợi đam mê.<br>Bồi đắp năng lực.</blockquote></div></article>
+  </section>
+
+  <section class="row thirds activity-row">
+    <article class="tile photo-card" data-tile="04"><div class="tile-body"><p class="eyebrow">STEM · LẬP TRÌNH</p><h2>Robot dò đường</h2><figure><img src="assets/robot.jpg" alt="Học sinh tham gia hoạt động robot dò đường"></figure><p>Từ cảm biến đến thuật toán: quan sát đường đi, điều chỉnh chương trình và học qua từng lần chạy thử.</p><span class="takeaway">Tư duy logic + thực hành</span></div></article>
+    <article class="tile photo-card" data-tile="05"><div class="tile-body"><p class="eyebrow">NGHIÊN CỨU · KHÁM PHÁ</p><h2>Khoa học kỹ thuật</h2><figure><img src="assets/khoa-hoc-ky-thuat.jpg" alt="Đoàn tham gia Cuộc thi Khoa học kỹ thuật cấp thành phố"></figure><p>Cuộc thi Khoa học kỹ thuật cấp thành phố: đưa câu hỏi từ thực tiễn thành ý tưởng nghiên cứu và sản phẩm.</p><span class="takeaway">Đặt vấn đề → thử nghiệm → cải tiến</span></div></article>
+    <article class="tile photo-card" data-tile="06"><div class="tile-body"><p class="eyebrow">HIỂU AI · DÙNG AI</p><h2>Chuyên đề trí tuệ nhân tạo</h2><figure><img src="assets/chuyen-de-ai.jpg" alt="Chuyên đề trí tuệ nhân tạo tại trường"></figure><p>Khám phá ứng dụng AI trong học tập và đời sống. Biết đặt câu hỏi, đánh giá câu trả lời và sử dụng có trách nhiệm.</p><span class="takeaway">Công nghệ mới, tư duy chủ động</span></div></article>
+  </section>
+
+  <section class="row thirds activity-row">
+    <article class="tile photo-card" data-tile="07"><div class="tile-body"><p class="eyebrow">CÔNG DÂN SỐ</p><h2>Kỹ năng tiếp nhận thông tin</h2><figure><img src="assets/tiep-nhan-thong-tin.jpg" alt="Hoạt động kỹ năng tiếp nhận thông tin"></figure><p>Đọc kỹ trước khi tin, kiểm tra trước khi chia sẻ. Tìm nguồn gốc, xem thời điểm và đối chiếu thông tin.</p><span class="takeaway">Dừng một nhịp, kiểm chứng một lần</span></div></article>
+    <article class="tile photo-card" data-tile="08"><div class="tile-body"><p class="eyebrow">SÁNG TẠO NỘI DUNG SỐ</p><h2>Thiết kế đồ họa</h2><figure><img src="assets/do-hoa.jpg" alt="Học sinh trải nghiệm hoạt động thiết kế đồ họa"></figure><p>Biến thông điệp thành hình ảnh bằng bố cục, màu sắc và chữ. Sáng tạo sản phẩm rõ ý, đẹp mắt và tôn trọng bản quyền.</p><span class="takeaway">Ý tưởng tốt + cách thể hiện rõ</span></div></article>
+    <article class="tile photo-card" data-tile="09"><div class="tile-body"><p class="eyebrow">ĐỔI MỚI DẠY VÀ HỌC</p><h2>Tập huấn Google Education</h2><figure><img src="assets/google-education.jpg" alt="Giáo viên tham gia tập huấn Google Education"></figure><p>Cập nhật công cụ số phục vụ dạy học, chia sẻ học liệu và hỗ trợ cộng tác trong môi trường giáo dục.</p><span class="takeaway">Cùng học hỏi, cùng phát triển</span></div></article>
+  </section>
+
+  <section class="row thirds compact-row">
+    <article class="tile photo-card" data-tile="10"><div class="tile-body"><p class="eyebrow">TRẢI NGHIỆM · HƯỚNG NGHIỆP</p><h2>Chạm vào công nghệ</h2><figure><img src="assets/trai-nghiem.jpg" alt="Học sinh trải nghiệm các công nghệ kỹ thuật của trường đại học"></figure><p>Trải nghiệm các công nghệ kỹ thuật của trường đại học; mở rộng hiểu biết về ngành học và nghề nghiệp.</p></div></article>
+    <article class="tile photo-card" data-tile="11"><div class="tile-body"><p class="eyebrow">BỒI DƯỠNG · KẾT NỐI</p><h2>Trại lập trình</h2><figure><img src="assets/ket-noi.jpg" alt="Trại lập trình bồi dưỡng học sinh"></figure><p>Các trại lập trình bồi dưỡng học sinh: rèn tư duy thuật toán, trao đổi cách giải và nuôi dưỡng niềm say mê.</p></div></article>
+    <article class="tile competency" data-tile="12"><div class="tile-body"><p class="eyebrow">HÀNH TRANG HỌC SINH</p><h2>6 miền năng lực số</h2><ol><li>Khai thác dữ liệu và thông tin</li><li>Giao tiếp và hợp tác trong môi trường số</li><li>Sáng tạo nội dung số</li><li>An toàn</li><li>Giải quyết vấn đề</li><li>Ứng dụng trí tuệ nhân tạo</li></ol><p class="source">Theo Thông tư 02/2025/TT-BGDĐT.<br><a href="https://baochinhphu.vn/ban-hanh-quy-dinh-khung-nang-luc-so-cho-nguoi-hoc-102250207122046742.htm">Nguồn: Báo Điện tử Chính phủ, 07/02/2025.</a></p></div></article>
+  </section>
+
+  <section class="row halves footer-row">
+    <article class="tile practical" data-tile="13"><div class="tile-body"><p class="eyebrow">GÓC THỰC HÀNH · AI CÓ TRÁCH NHIỆM</p><h2>Dùng AI để học tốt hơn</h2><div class="steps"><p><b>01</b><span><strong>Nêu rõ điều cần học</strong>Cho biết mục tiêu, dữ kiện và phần em chưa hiểu.</span></p><p><b>02</b><span><strong>Yêu cầu giải thích</strong>Nhờ gợi ý từng bước; tự làm lại bằng cách của mình.</span></p><p><b>03</b><span><strong>Kiểm chứng kết quả</strong>Đối chiếu với bài học, nguồn tin cậy hoặc phép thử.</span></p><p><b>04</b><span><strong>Minh bạch và bảo vệ dữ liệu</strong>Nêu phần AI hỗ trợ; không nhập dữ liệu riêng tư.</span></p></div><div class="note">AI có thể trả lời sai. Người học chịu trách nhiệm về sản phẩm của mình.</div></div></article>
+    <article class="tile challenge" data-tile="14"><div class="tile-body"><p class="eyebrow">THỬ THÁCH DÀNH CHO BẠN</p><h2>Một sản phẩm số<br>cho ngôi trường thân yêu</h2><p>Thiết kế một poster, trang web nhỏ hoặc chương trình giới thiệu một nét đẹp của trường nhân kỷ niệm 50 năm.</p><div class="brief"><p><strong>Thông điệp</strong>Rõ ràng, tích cực, phù hợp học đường.</p><p><strong>Tư liệu</strong>Ảnh được phép sử dụng, có ghi nguồn.</p><p><strong>Sản phẩm</strong>Dễ đọc, dễ dùng, kiểm tra trước khi chia sẻ.</p></div><p class="closing">Bắt đầu từ điều em quan sát.<br>Tạo nên điều có ích cho mọi người.</p></div></article>
+  </section>
+</div></div>
+</main>
+<footer class="screen-footer">Ảnh và logo do Tổ Tin học cung cấp · Nội dung thực hành là gợi ý biên soạn cho bảng tin · <a href="README.md">Thông tin bản in</a></footer>
+<script src="app.js"></script>
+</body></html>

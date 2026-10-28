@@ -1,0 +1,5 @@
+qa/contact.jpg
+qa/preview*.png
+qa/pdf-page*.png
+qa/*report.json
+__pycache__/
