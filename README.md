@@ -75,3 +75,7 @@ Sau đó chạy `python qa/check-pdf.py` với môi trường có pypdf để b�
 Phần thuyết minh được căn đều hai bên; dòng cuối căn trái. `typography.js` giữ các cụm từ và phần kết đoạn đi cùng nhau, tránh một chữ lẻ ở dòng cuối; không dùng ngắt giữa chữ hoặc dấu gạch nối tự động. Phông Noto Sans dùng cục bộ. PDF kiểm tra các phông được nhúng hoặc có chương trình vẽ ký tự tích hợp cùng ánh xạ Unicode, giúp giữ hình dạng chữ khi in trên máy khác.
 
 Sau khi sửa nội dung, chạy thêm `node qa/typography.cjs` để rà các dòng cuối chỉ còn một từ, kiểm tra phông đã tải và ký tự thay thế. Cần chạy kiểm tra bố cục, xuất PDF và xem ảnh dựng từ PDF sau mọi thay đổi typography.
+
+## Bản web mobile riêng
+
+Truy cập [Tiếp nối sáng tạo – bản mobile](https://hiencaophunhuan.github.io/bang-tin-tin-hoc-phu-nhuan/mobile/) để đọc nội dung theo bố cục điện thoại, xem 88 ảnh trong 9 album và sử dụng các mô phỏng tương tác. Bản mobile có hiệu ứng cuộn, dải thumbnail tự chạy từ phải sang trái, kéo/vuốt xem nhanh và trình xem ảnh lớn. Chi tiết nguồn và hướng dẫn cập nhật nằm trong `mobile/README.md`. Bản in 60 × 90 cm ở trang gốc được giữ nguyên.
