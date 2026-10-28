@@ -32,3 +32,11 @@ Khởi động HTTP server ở thư mục repo, chạy `node qa/check-mobile.cjs
 - Màn hình 320/375/390/430/768 px, desktop 1440 px và chế độ giảm chuyển động.
 
 Có thể truyền URL công khai vào script để kiểm tra sau xuất bản. Các ảnh chụp và báo cáo QA nằm trong `qa/` và được bỏ qua bởi Git.
+
+## Cập nhật khả năng đọc và hiệu ứng cuộn
+
+Trên điện thoại, khung nội dung rộng gần hết màn hình (chỉ cách hai mép 6 px), chữ nội dung chính 17 px, các đoạn hai cột chuyển thành một cột. Tiêu đề, nút và thumbnail được tăng kích thước. Footer dùng logo Tổ Tin; logo 50 năm vẫn ở phần đầu trang.
+
+`scroll-effects.js` bổ sung hiệu ứng thẻ và tiêu đề xuất hiện khi cuộn, ảnh mở dần vào khung, đường màu tiến triển trên thẻ đang đọc, dấu chương kéo dài theo tiến độ và chuyển động nhẹ ở phần đầu trang. Không chặn cuộn gốc của trình duyệt. Chỉ đo và cập nhật các khung đang gần màn hình; tôn trọng nút dừng chuyển động và thiết lập reduced motion.
+
+Chạy thêm `node qa/check-mobile-reading.cjs` để kiểm tra logo footer, bề rộng/cỡ chữ tại 320–768 px, chuyển đổi opacity/transform thực tế của thẻ, thay đổi clip-path của ảnh theo thời gian và tiến độ theo vị trí cuộn. Ảnh chụp QA cho phép xem lại bố cục đọc rộng và footer.
