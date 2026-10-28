@@ -23,8 +23,22 @@ const path=require('path');
  await page.uncheck('#cut-lines');if(!await page.locator('.no-cuts').count())throw Error('Cut toggle');await page.check('#cut-lines');
  await page.emulateMedia({media:'print'});
  await page.evaluate(()=>{document.querySelector('.sheet').style.transform='none'});
+ report.print = await page.evaluate(()=>{
+   const overflow=[],overlap=[];
+   for(const tile of document.querySelectorAll('.tile')){
+     const r=tile.getBoundingClientRect();
+     for(const el of tile.querySelectorAll('h1,h2,p,figure,blockquote,ol,.tags,.note,.brief,.insight,.feature-columns,.prompt-example,.security-tip')){
+       const b=el.getBoundingClientRect();
+       if(b.bottom>r.bottom+1||b.right>r.right+1||b.left<r.left-1)overflow.push({tile:tile.dataset.tile,text:el.textContent.slice(0,70)});
+     }
+     const body=tile.querySelector('.tile-body');
+     if(body){const children=[...body.children];for(let i=1;i<children.length;i++)if(children[i-1].getBoundingClientRect().bottom>children[i].getBoundingClientRect().top+1)overlap.push(tile.dataset.tile);}
+   }
+   const school=document.querySelector('.anniversary .school-logo').getBoundingClientRect(), anniversary=document.querySelector('.anniversary img:last-child').getBoundingClientRect();
+   return {overflow,overlap,logosAdjacent:school.right<=anniversary.left&&Math.abs(school.top-anniversary.top)<2,wordCount:document.querySelector('.sheet').innerText.trim().split(/\s+/).length};
+ });
  fs.mkdirSync(path.join(__dirname,'../output/pdf'),{recursive:true});
- await page.pdf({path:path.join(__dirname,'../output/pdf/bang-tin-tin-hoc-A1.pdf'),preferCSSPageSize:true,printBackground:true});
+ await page.pdf({path:path.join(__dirname,'../output/pdf/bang-tin-tin-hoc-60x90cm.pdf'),preferCSSPageSize:true,printBackground:true});
  await page.emulateMedia({media:'screen'});
  await page.setViewportSize({width:390,height:844});await page.evaluate(()=>dispatchEvent(new Event('resize')));
  report.mobile=await page.evaluate(()=>({width:innerWidth,scrollWidth:document.documentElement.scrollWidth}));
@@ -32,7 +46,7 @@ const path=require('path');
  report.errors=errors;fs.writeFileSync(path.join(__dirname,'check-report.json'),JSON.stringify(report,null,2));
  console.log(JSON.stringify(report,null,2));
  await browser.close();
- if(report.overflow.length||report.images.some(i=>!i.loaded)||errors.length||report.tiles!==14||report.mobile.scrollWidth>390)process.exitCode=1;
+ if(report.overflow.length||report.print.overflow.length||report.print.overlap.length||!report.print.logosAdjacent||report.images.some(i=>!i.loaded)||errors.length||report.tiles!==14||report.mobile.scrollWidth>390||Math.abs(report.sizeMm[0]-600)>.2||Math.abs(report.sizeMm[1]-900)>.2)process.exitCode=1;
 })();
 
 
