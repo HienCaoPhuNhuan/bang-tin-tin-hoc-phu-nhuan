@@ -12,10 +12,10 @@ GROUPS = {
     'literacy': ('Đọc tin có kiểm chứng', 'Doc tin co kiem chung', ['tiep-nhan-thong-tin.jpg']),
     'robot': ('Robot dò đường', 'Robot do duong', ['robot.jpg']),
     'design': ('Thiết kế đồ họa', 'Thiet ke do hoa', ['do-hoa.jpg']),
-    'ai': ('Sân chơi AI', None, ['ai-challenge.jpg', 'trao-giai-ai.jpg']),
+    'ai': ('Sân chơi AI', 'San choi AI', ['ai-challenge.jpg', 'trao-giai-ai.jpg']),
     'team': ('Tổ Tin - Công nghệ', None, ['to-tin-cong-nghe.jpg', 'to-tin-hoc.jpg']),
     'science': ('Khoa học kỹ thuật', None, ['khoa-hoc-ky-thuat.jpg']),
-    'teaching': ('Cộng tác trong lớp học số', None, ['google-education.jpg', 'chuyen-de-ai.jpg']),
+    'teaching': ('Cộng tác trong lớp học số', 'Cong tac lop hoc so', ['google-education.jpg', 'chuyen-de-ai.jpg']),
 }
 def natural(path):
     return [int(t) if t.isdigit() else t.lower() for t in re.split(r'(\d+)', path.name)]
@@ -23,7 +23,7 @@ galleries, new_count, duplicates = {}, 0, 0
 for key, (title, folder, originals) in GROUPS.items():
     sources = [(ROOT/'assets'/name, False) for name in originals]
     if folder:
-        sources += [(p, True) for p in sorted((ROOT.parent/'Hinh anh'/folder).iterdir(), key=natural) if p.suffix.lower() in ['.jpg','.jpeg','.png','.webp']]
+        sources += [(p, True) for p in sorted((ROOT.parent/'Hinh anh'/folder).rglob('*'), key=natural) if p.is_file() and p.suffix.lower() in ['.jpg','.jpeg','.png','.webp']]
     seen, items = set(), []
     for source, is_new in sources:
         digest = hashlib.sha256(source.read_bytes()).hexdigest()
@@ -40,8 +40,8 @@ for key, (title, folder, originals) in GROUPS.items():
         thumb = im.copy(); thumb.thumbnail((480,360))
         thumb.save(MOBILE/'media'/f'{slug}-thumb.webp','WEBP',quality=80,method=5)
         alt = f'{title} · Ảnh {index:02d}'
-        if key == 'team': alt = ['Tập thể Tổ Tin - Công nghệ', 'Tổ Tin học · Hình ảnh lưu giữ'][index-1]
-        if key == 'teaching': alt = ['Tập huấn Google Education', 'Chuyên đề trí tuệ nhân tạo'][index-1]
+        if key == 'team' and not is_new: alt = ['Tập thể Tổ Tin - Công nghệ', 'Tổ Tin học · Hình ảnh lưu giữ'][index-1]
+        if key == 'teaching' and not is_new: alt = ['Tập huấn Google Education', 'Chuyên đề trí tuệ nhân tạo'][index-1]
         items.append(dict(src=f'media/{slug}.webp',thumb=f'media/{slug}-thumb.webp',alt=alt,width=im.width,height=im.height,source=source.name))
         new_count += int(is_new)
     galleries[key] = dict(title=title,items=items)

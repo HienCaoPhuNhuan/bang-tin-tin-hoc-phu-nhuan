@@ -46,8 +46,8 @@ document.addEventListener('click',e=>{const trigger=e.target.closest('[data-open
 function buildGallery(el,key){
  const data=galleryData[key];if(!data)return;
  const first=data.items[0],cover=document.createElement('button');cover.className='cover-preview';cover.dataset.openGallery=key;cover.dataset.index='0';cover.setAttribute('aria-label',`Xem ảnh lớn: ${data.title}`);const image=document.createElement('img');Object.assign(image,{src:first.src,alt:first.alt,loading:'lazy',decoding:'async',width:first.width,height:first.height});cover.append(image);el.append(cover);
- if(data.items.length<2){const caption=document.createElement('p');caption.className='gallery-hint';caption.textContent=first.alt;el.append(caption);return;}
- const heading=document.createElement('div');heading.className='gallery-heading';heading.innerHTML=`<span>${data.items.length} ẢNH · KÉO ĐỂ KHÁM PHÁ</span><div class="gallery-controls"><button class="rail-prev" aria-label="Lướt về ảnh trước">←</button><button class="rail-pause" aria-label="Tạm dừng dải ảnh" aria-pressed="false">Ⅱ</button><button class="rail-next" aria-label="Lướt đến ảnh tiếp theo">→</button></div>`;el.append(heading);
+ if(data.items.length<2)return;
+ const heading=document.createElement('div');heading.className='gallery-heading';heading.innerHTML=`<span>${data.items.length} ẢNH</span><div class="gallery-controls"><button class="rail-prev" aria-label="Lướt về ảnh trước">←</button><button class="rail-pause" aria-label="Tạm dừng dải ảnh" aria-pressed="false">Ⅱ</button><button class="rail-next" aria-label="Lướt đến ảnh tiếp theo">→</button></div>`;el.append(heading);
  const viewport=document.createElement('div');viewport.className='rail-viewport';viewport.tabIndex=0;viewport.setAttribute('aria-label',`Dải ảnh ${data.title}, vuốt hoặc kéo để lướt`);
  const track=document.createElement('div');track.className='rail-track';const group=document.createElement('div');group.className='rail-group';
  function makeThumb(item,index,hidden=false){const button=document.createElement('button');button.className='thumb';button.dataset.index=String(index);button.dataset.openGallery=key;button.setAttribute('aria-label',`Mở ${item.alt}`);if(hidden){button.tabIndex=-1;button.setAttribute('aria-hidden','true');}const img=document.createElement('img');Object.assign(img,{src:item.thumb,alt:'',loading:'lazy',decoding:'async',width:480,height:320,draggable:false});const badge=document.createElement('span');badge.textContent=String(index+1).padStart(2,'0');button.append(img,badge);return button;}
@@ -56,7 +56,7 @@ function buildGallery(el,key){
  const repeats=Math.max(1,Math.ceil(1600/(data.items.length*144)));
  for(let n=1;n<repeats;n++)data.items.forEach((item,index)=>group.append(makeThumb(item,index,true)));
  track.append(group);const duplicate=group.cloneNode(true);duplicate.setAttribute('aria-hidden','true');$$('button',duplicate).forEach(b=>b.tabIndex=-1);track.append(duplicate);viewport.append(track);el.append(viewport);
- const hint=document.createElement('p');hint.className='gallery-hint';hint.textContent='Tự trôi từ phải sang trái · Vuốt/kéo để xem nhanh · Chạm để mở ảnh';el.append(hint);
+ if(key==='team')buildTeamCredits(el);
  const state={viewport,group,visible:false,paused:false,pauseUntil:0,hover:false,focused:false,drag:null,momentum:0,width:0,carry:0,track,suppressUntil:0};rails.push(state);
  const measure=()=>{state.width=group.getBoundingClientRect().width;};new ResizeObserver(measure).observe(group);measure();
  new IntersectionObserver(entries=>entries.forEach(entry=>{state.visible=entry.isIntersecting;}),{rootMargin:'80px'}).observe(viewport);
@@ -72,6 +72,23 @@ function buildGallery(el,key){
  $('.rail-pause',heading).addEventListener('click',e=>{state.paused=!state.paused;e.currentTarget.setAttribute('aria-pressed',String(state.paused));e.currentTarget.setAttribute('aria-label',state.paused?'Phát dải ảnh':'Tạm dừng dải ảnh');e.currentTarget.textContent=state.paused?'▶':'Ⅱ';});
  for(const [selector,delta] of [['.rail-prev',-1],['.rail-next',1]])$(selector,heading).addEventListener('click',()=>{delay();const target=viewport.scrollLeft+delta*230;if(target<0)viewport.scrollLeft=target+state.width;else if(target>=state.width)viewport.scrollLeft=target-state.width;else viewport.scrollBy({left:delta*230,behavior:motionPaused?'instant':'smooth'});});
 }
+function buildTeamCredits(gallery){
+ const credits=document.createElement('div');credits.className='team-credits';
+ const rows=[
+  ['Hàng trên từ trái sang phải lần lượt:', 'Thầy Hoàng Kim Bảo – Tổ phó chuyên môn; Thầy Đinh Công Bình; Thầy Cao Nguyễn Nam Hiền; Thầy Hà Thanh Liêm; Thầy Đàm Thanh Xuân'],
+  ['Hàng dưới từ trái sang phải lần lượt:', 'Thầy Mai Xuân Tuyên, Cô Đinh Mỹ Vân, Cô Nguyễn Thị Ngọc Nhi – Tổ trưởng chuyên môn, Cô Trần Thị Tâm, Thầy Nguyễn Quốc Nam']
+ ];
+ for(const [label,names] of rows){
+  const row=document.createElement('div');row.className='team-credit-row';
+  const title=document.createElement('strong');title.className='team-credit-label';title.textContent=label;
+  const viewport=document.createElement('div');viewport.className='names-viewport';viewport.tabIndex=0;viewport.setAttribute('role','group');viewport.setAttribute('aria-label',`${label} ${names}`);
+  const track=document.createElement('div');track.className='names-track';track.setAttribute('aria-hidden','true');
+  const group=document.createElement('span');group.className='names-group';group.textContent=names;
+  track.append(group,group.cloneNode(true));viewport.append(track);row.append(title,viewport);credits.append(row);
+  new ResizeObserver(()=>{track.style.setProperty('--names-duration',`${Math.max(20,group.getBoundingClientRect().width/40)}s`)}).observe(group);
+ }
+ gallery.append(credits);
+}
 let lastFrame=0;
 function animate(now){const dt=Math.min(40,now-lastFrame||16);lastFrame=now;if(!document.hidden&&!modalOpen)for(const state of rails){if(!state.visible||!state.width||state.drag)continue;const el=state.viewport;if(Math.abs(state.momentum)>.2){el.scrollLeft+=state.momentum*dt/16;state.momentum*=Math.pow(.92,dt/16);}else if(!motionPaused&&!state.paused&&!state.hover&&!state.focused&&now>state.pauseUntil){state.carry+=22*dt/1000;const whole=Math.floor(state.carry);if(whole){el.scrollLeft+=whole;state.carry-=whole;}state.track.style.transform=`translate3d(${-state.carry}px,0,0)`;}if(el.scrollLeft>=state.width)el.scrollLeft-=state.width;if(el.scrollLeft<0)el.scrollLeft+=state.width;}requestAnimationFrame(animate);}
 requestAnimationFrame(animate);
@@ -79,7 +96,6 @@ requestAnimationFrame(animate);
 fetch('galleries.json').then(response=>{if(!response.ok)throw Error('Không tải được album ảnh');return response.json()}).then(manifest=>{
  galleryData=manifest.galleries;
  $$('.gallery[data-gallery]').forEach(el=>buildGallery(el,el.dataset.gallery));
- const albums=$('#album-buttons');Object.entries(galleryData).forEach(([key,gallery])=>{const button=document.createElement('button');button.dataset.openGallery=key;button.dataset.index='0';const img=document.createElement('img');Object.assign(img,{src:gallery.items[0].thumb,alt:'',loading:'lazy',width:480,height:320});const text=document.createElement('span'),title=document.createElement('strong'),count=document.createElement('small');title.textContent=gallery.title;count.textContent=`${gallery.items.length} ảnh · Chạm để xem`;text.append(title,count);button.append(img,text);albums.append(button);});
- $('#gallery-total').textContent=`${manifest.total} khoảnh khắc trong ${Object.keys(galleryData).length} album · Ảnh do đơn vị cung cấp.`;
+ const albums=$('#album-buttons');Object.entries(galleryData).forEach(([key,gallery])=>{const button=document.createElement('button');button.dataset.openGallery=key;button.dataset.index='0';const img=document.createElement('img');Object.assign(img,{src:gallery.items[0].thumb,alt:'',loading:'lazy',width:480,height:320});const text=document.createElement('span'),title=document.createElement('strong'),count=document.createElement('small');title.textContent=gallery.title;count.textContent=`${gallery.items.length} ảnh`;text.append(title,count);button.append(img,text);albums.append(button);});
  window.mobileReady=true;window.mobileGalleries=manifest;
 }).catch(error=>{console.error(error);$$('.gallery').forEach(el=>{el.innerHTML='<p class="gallery-hint">Chưa tải được album. Hãy tải lại trang hoặc xem bản in qua liên kết cuối trang.</p>'});window.mobileError=String(error)});

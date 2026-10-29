@@ -10,7 +10,7 @@ const base=process.argv[2]||'http://127.0.0.1:8765/mobile/';
  const report={portrait:[],landscape:[]};
  for(const width of [320,390,430,768]){
   await page.setViewportSize({width,height:1024});
-  const sizes=await page.locator('.story').evaluateAll(es=>es.map(e=>({width:e.getBoundingClientRect().width,font:parseFloat(getComputedStyle(e.querySelector('p:not(.eyebrow)')).fontSize)})));
+  const sizes=await page.locator('.story').evaluateAll(es=>es.map(e=>({width:e.getBoundingClientRect().width,font:parseFloat(getComputedStyle(e.querySelector('p:not(.eyebrow)')||e).fontSize)})));
   assert(sizes.every(s=>Math.abs(s.width-width)<1));
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
   report.portrait.push({width,storyWidths:sizes.map(s=>s.width)});
@@ -32,7 +32,7 @@ const base=process.argv[2]||'http://127.0.0.1:8765/mobile/';
  assert.deepEqual(footer.children,['IMG','P']);assert(footer.logo.endsWith('logo-to.png'));assert(!footer.text.includes('tham khảo'));report.footer=footer;
  // Compare landscape against the same page without the portrait additions.
  const original=await browser.newPage();await original.route('**/portrait.*',r=>r.abort());
- const metrics=p=>p.locator('.story').evaluateAll(es=>es.map(e=>({x:e.getBoundingClientRect().x,width:e.getBoundingClientRect().width,font:getComputedStyle(e.querySelector('p')).fontSize})));
+ const metrics=p=>p.locator('.story').evaluateAll(es=>es.map(e=>({x:e.getBoundingClientRect().x,width:e.getBoundingClientRect().width,font:getComputedStyle(e.querySelector('p')||e).fontSize})));
  for(const width of [667,844,1440]){
   await page.setViewportSize({width,height:390});await original.setViewportSize({width,height:390});await original.goto(base,{waitUntil:'networkidle'});await original.waitForFunction(()=>window.mobileReady);
   for(const p of [page,original]) await p.addStyleTag({content:'.story{transform:none!important;transition:none!important}'});
